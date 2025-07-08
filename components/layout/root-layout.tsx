@@ -1,6 +1,5 @@
 import { Header } from './header';
 import { Footer } from './footer';
-import { features } from '@/config/features';
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -13,8 +12,8 @@ interface RootLayoutProps {
 export function RootLayout({
   children,
   showSidebar = false,
-  showHeader = features.marketing.enabled,
-  showFooter = features.marketing.enabled,
+  showHeader = true,
+  showFooter = true,
   className = '',
 }: RootLayoutProps) {
   return (

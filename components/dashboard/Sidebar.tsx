@@ -10,7 +10,8 @@ import {
   Folder,
   LayoutDashboard,
 } from 'lucide-react';
-import { MembershipView } from '@/app/(dashboard)/membership/page';
+// Define the view type locally since this is a placeholder component
+type MembershipView = 'membership' | 'videos' | 'live' | 'events' | 'resources' | 'profile';
 
 const navLinks = [
   {
