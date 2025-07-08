@@ -1,5 +1,3 @@
-Revised Signature Cocktail List
-
 Captain’s Anchorage (Pour)
 
 3–4 dashes Aztec bitters

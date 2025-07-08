@@ -1,4 +1,21 @@
 import { QuizQuestion } from './types'
+import fs from 'fs';
+
+// Helper to load recipes from context/drinks-menu.txt (for server-side use only)
+let drinkRecipes: Record<string, string> = {};
+if (typeof window === 'undefined') {
+  try {
+    const text = require('fs').readFileSync(require('path').resolve(__dirname, '../context/drinks-menu.txt'), 'utf-8');
+    const drinks = text.split(/\n\n+/).filter(Boolean);
+    for (const block of drinks) {
+      const lines = block.split('\n').filter(Boolean);
+      if (lines.length > 0) {
+        const name = lines[0].replace(/\s*\(.*\)$/, '').trim();
+        drinkRecipes[name] = lines.slice(1).join('\n');
+      }
+    }
+  } catch {}
+}
 
 export const quizQuestions: QuizQuestion[] = [
   {
