@@ -52,6 +52,7 @@ export function QuestionDisplay({ question, onAnswer, selectedAnswer }: Question
   return (
     <Card className="mt-8">
       <CardHeader>
+        <div className="mb-2 text-primary font-semibold text-lg">{question.drink}</div>
         <CardTitle className="text-xl">{question.question}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">

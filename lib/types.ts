@@ -4,6 +4,7 @@ export interface QuizQuestion {
   options: string[]
   correctAnswer: number
   explanation: string
+  drink: string // Name of the drink this question is about
 }
 
 export interface QuizState {

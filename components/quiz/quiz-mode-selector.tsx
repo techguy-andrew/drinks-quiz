@@ -15,55 +15,27 @@ export function QuizModeSelector({ onSelectMode }: QuizModeSelectorProps) {
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold mb-4">Drinks Quiz</h1>
         <p className="text-lg text-muted-foreground">
-          Choose your quiz mode to get started
+          Test your knowledge of all our signature drinks
         </p>
       </div>
-
-      <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-        <Card className="hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <CardTitle className="text-xl">Short Quiz</CardTitle>
-            <CardDescription>
-              Random selection of questions for a quick challenge
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="text-sm text-muted-foreground">
-                <p>• 25 random questions</p>
-                <p>• ~10-15 minutes</p>
-                <p>• Different questions each time</p>
-              </div>
-              <Button 
-                onClick={() => onSelectMode('short')} 
-                className="w-full"
-                size="lg"
-              >
-                Start Short Quiz
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
+      <div className="max-w-2xl mx-auto">
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardTitle className="text-xl">Full Quiz</CardTitle>
             <CardDescription>
-              Complete quiz with all available questions
+              Complete quiz with all available questions, grouped by drink
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="text-sm text-muted-foreground">
-                <p>• All 55 questions</p>
-                <p>• ~25-30 minutes</p>
+                <p>• All questions, grouped by drink</p>
                 <p>• Comprehensive coverage</p>
               </div>
               <Button 
                 onClick={() => onSelectMode('full')} 
                 className="w-full"
                 size="lg"
-                variant="secondary"
               >
                 Start Full Quiz
               </Button>

@@ -23,27 +23,23 @@ export function QuizContainer() {
   const [currentQuestionStartTime, setCurrentQuestionStartTime] = useState<number>(0)
 
   const initializeQuiz = (mode: QuizMode) => {
-    let selectedQuestions: QuizQuestion[]
-    
-    if (mode === 'short') {
-      // Short quiz: 25 random questions
-      selectedQuestions = shuffleArray(quizQuestions).slice(0, 25)
-    } else {
-      // Full quiz: all 55 questions in random order
-      selectedQuestions = shuffleArray(quizQuestions)
-    }
-    
-    setQuestions(selectedQuestions)
+    // Group questions by drink and order them
+    const grouped = [...quizQuestions].sort((a, b) => {
+      if (a.drink < b.drink) return -1;
+      if (a.drink > b.drink) return 1;
+      return 0;
+    });
+    setQuestions(grouped);
     setQuizState({
       currentQuestion: 0,
       score: 0,
       answers: [],
       isComplete: false,
       timeSpent: 0
-    })
-    const now = Date.now()
-    setStartTime(now)
-    setCurrentQuestionStartTime(now)
+    });
+    const now = Date.now();
+    setStartTime(now);
+    setCurrentQuestionStartTime(now);
   }
 
   const handleModeSelect = (mode: QuizMode) => {
