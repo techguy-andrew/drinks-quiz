@@ -55,8 +55,8 @@ export function QuizModeSelector({ onSelectMode }: QuizModeSelectorProps) {
           <CardContent>
             <div className="space-y-4">
               <div className="text-sm text-muted-foreground">
-                <p>• All 80 questions</p>
-                <p>• ~30-40 minutes</p>
+                <p>• All 55 questions</p>
+                <p>• ~25-30 minutes</p>
                 <p>• Comprehensive coverage</p>
               </div>
               <Button 

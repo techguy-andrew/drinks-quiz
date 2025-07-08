@@ -29,7 +29,7 @@ export function QuizContainer() {
       // Short quiz: 25 random questions
       selectedQuestions = shuffleArray(quizQuestions).slice(0, 25)
     } else {
-      // Full quiz: all 80 questions in random order
+      // Full quiz: all 55 questions in random order
       selectedQuestions = shuffleArray(quizQuestions)
     }
     
