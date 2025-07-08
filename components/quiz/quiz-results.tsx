@@ -7,9 +7,10 @@ interface QuizResultsProps {
   totalQuestions: number
   timeSpent: number
   onRestart: () => void
+  onBackToModeSelection?: () => void
 }
 
-export function QuizResults({ score, totalQuestions, timeSpent, onRestart }: QuizResultsProps) {
+export function QuizResults({ score, totalQuestions, timeSpent, onRestart, onBackToModeSelection }: QuizResultsProps) {
   const percentage = calculatePercentage(score, totalQuestions)
   const message = getScoreMessage(percentage)
   const timeMinutes = Math.floor(timeSpent / 60000)
@@ -50,8 +51,13 @@ export function QuizResults({ score, totalQuestions, timeSpent, onRestart }: Qui
 
           <div className="space-y-2">
             <Button onClick={onRestart} className="w-full">
-              Take Quiz Again
+              Take Same Quiz Again
             </Button>
+            {onBackToModeSelection && (
+              <Button variant="outline" className="w-full" onClick={onBackToModeSelection}>
+                Try Different Quiz Mode
+              </Button>
+            )}
             <Button variant="outline" className="w-full" onClick={() => window.location.href = '/'}>
               Back to Home
             </Button>

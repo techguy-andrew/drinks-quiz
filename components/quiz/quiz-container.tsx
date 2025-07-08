@@ -7,8 +7,10 @@ import { quizQuestions } from '@/lib/quiz-data'
 import { QuestionDisplay } from './question-display'
 import { QuizProgress } from './quiz-progress'
 import { QuizResults } from './quiz-results'
+import { QuizModeSelector, QuizMode } from './quiz-mode-selector'
 
 export function QuizContainer() {
+  const [selectedMode, setSelectedMode] = useState<QuizMode | null>(null)
   const [questions, setQuestions] = useState<QuizQuestion[]>([])
   const [quizState, setQuizState] = useState<QuizState>({
     currentQuestion: 0,
@@ -20,14 +22,34 @@ export function QuizContainer() {
   const [startTime, setStartTime] = useState<number>(0)
   const [currentQuestionStartTime, setCurrentQuestionStartTime] = useState<number>(0)
 
-  useEffect(() => {
-    // Shuffle questions and select first 25
-    const shuffledQuestions = shuffleArray(quizQuestions).slice(0, 25)
-    setQuestions(shuffledQuestions)
+  const initializeQuiz = (mode: QuizMode) => {
+    let selectedQuestions: QuizQuestion[]
+    
+    if (mode === 'short') {
+      // Short quiz: 25 random questions
+      selectedQuestions = shuffleArray(quizQuestions).slice(0, 25)
+    } else {
+      // Full quiz: all 80 questions in random order
+      selectedQuestions = shuffleArray(quizQuestions)
+    }
+    
+    setQuestions(selectedQuestions)
+    setQuizState({
+      currentQuestion: 0,
+      score: 0,
+      answers: [],
+      isComplete: false,
+      timeSpent: 0
+    })
     const now = Date.now()
     setStartTime(now)
     setCurrentQuestionStartTime(now)
-  }, [])
+  }
+
+  const handleModeSelect = (mode: QuizMode) => {
+    setSelectedMode(mode)
+    initializeQuiz(mode)
+  }
 
   const handleAnswer = async (selectedAnswer: number) => {
     const currentQuestion = questions[quizState.currentQuestion]
@@ -87,8 +109,14 @@ export function QuizContainer() {
   }
 
   const resetQuiz = () => {
-    const shuffledQuestions = shuffleArray(quizQuestions).slice(0, 25)
-    setQuestions(shuffledQuestions)
+    if (selectedMode) {
+      initializeQuiz(selectedMode)
+    }
+  }
+
+  const goBackToModeSelection = () => {
+    setSelectedMode(null)
+    setQuestions([])
     setQuizState({
       currentQuestion: 0,
       score: 0,
@@ -96,9 +124,11 @@ export function QuizContainer() {
       isComplete: false,
       timeSpent: 0
     })
-    const now = Date.now()
-    setStartTime(now)
-    setCurrentQuestionStartTime(now)
+  }
+
+  // Show mode selector if no mode is selected
+  if (!selectedMode) {
+    return <QuizModeSelector onSelectMode={handleModeSelect} />
   }
 
   if (questions.length === 0) {
@@ -119,6 +149,7 @@ export function QuizContainer() {
         totalQuestions={questions.length}
         timeSpent={quizState.timeSpent}
         onRestart={resetQuiz}
+        onBackToModeSelection={goBackToModeSelection}
       />
     )
   }
