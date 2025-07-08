@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Drinks Quiz - Restaurant Staff Training',
-  description: 'Interactive quiz application for training restaurant staff on drink recipes and preparation',
+  title: 'Privateer Drinks Menu',
+  description: 'Test your knowledge of Privateer\'s signature cocktails and drink recipes',
 }
 
 export default function RootLayout({
