@@ -25,40 +25,40 @@ export function QuizResults({ score, totalQuestions, timeSpent, onRestart, onBac
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-2xl">
-      <Card>
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Quiz Complete!</CardTitle>
+    <div className="container mx-auto px-4 py-16 max-w-4xl">
+      <Card className="hover:shadow-lg transition-all duration-200">
+        <CardHeader className="text-center pb-6">
+          <CardTitle className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Quiz Complete!</CardTitle>
         </CardHeader>
-        <CardContent className="text-center space-y-6">
-          <div className="space-y-4">
-            <div className={`text-6xl font-bold ${getScoreColor(percentage)}`}>
+        <CardContent className="text-center space-y-8">
+          <div className="space-y-6">
+            <div className={`text-8xl md:text-9xl font-extrabold ${getScoreColor(percentage)}`}>
               {percentage}%
             </div>
             
-            <div className="text-lg">
+            <div className="text-xl md:text-2xl">
               You scored <strong>{score}</strong> out of <strong>{totalQuestions}</strong> questions correctly
             </div>
             
-            <div className="text-muted-foreground">
+            <div className="text-lg text-muted-foreground">
               Completed in {timeMinutes}m {timeSeconds}s
             </div>
           </div>
 
-          <div className="p-4 bg-muted rounded-lg">
-            <p className="text-lg font-medium">{message}</p>
+          <div className="p-6 bg-muted rounded-lg">
+            <p className="text-xl font-semibold">{message}</p>
           </div>
 
-          <div className="space-y-2">
-            <Button onClick={onRestart} className="w-full">
+          <div className="space-y-3">
+            <Button onClick={onRestart} size="lg" className="w-full text-lg px-8 py-6 h-auto">
               Take Same Quiz Again
             </Button>
             {onBackToModeSelection && (
-              <Button variant="outline" className="w-full" onClick={onBackToModeSelection}>
+              <Button variant="outline" size="lg" className="w-full text-lg px-8 py-6 h-auto" onClick={onBackToModeSelection}>
                 Try Different Quiz Mode
               </Button>
             )}
-            <Button variant="outline" className="w-full" onClick={() => window.location.href = '/'}>
+            <Button variant="outline" size="lg" className="w-full text-lg px-8 py-6 h-auto" onClick={() => window.location.href = '/'}>
               Back to Home
             </Button>
           </div>

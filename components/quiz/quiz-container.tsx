@@ -151,7 +151,7 @@ export function QuizContainer() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <div className="container mx-auto px-4 py-16 max-w-4xl">
       <QuizProgress
         currentQuestion={quizState.currentQuestion + 1}
         totalQuestions={questions.length}
